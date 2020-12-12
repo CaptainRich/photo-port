@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Nav from './components/Nav';
+import About from './components/About';
 
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+// This is the center of the application, the root component, or wrapper that
+// houses all of the other components.  To effect any change on the application
+// we need to either modify this file or add components inside of it.
+
+////////////////////////////////////////////////////////////////////////////////
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div> 
+      {/* This element will put up the header. */}
+      <Nav></Nav>        
+      <main>
+          <About />        
+      </main>
     </div>
   );
 }
