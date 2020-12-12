@@ -23,4 +23,4 @@ describe( "About component", () =>{
         expect(asFragment()).toMatchSnapshot();    // do actual and expected snapshots math
       });
 
-})
+});
