@@ -15,6 +15,11 @@ import ContactForm from './components/Contact';
 ////////////////////////////////////////////////////////////////////////////////
 function App() {
 
+  // Maintain the state of the application and what is currently rendered.
+  // By initializing 'contactSelected to false, the contact form will not be initially shown.
+  const [contactSelected, setContactSelected] = useState(false);
+
+
   const [categories] = useState([
     {
       name: "commercial",
@@ -36,13 +41,23 @@ function App() {
       <Nav
         categories={categories}
         setCurrentCategory={setCurrentCategory}
-        currentCategory={currentCategory} >
+        currentCategory={currentCategory} 
+        contactSelected={contactSelected}
+        setContactSelected={setContactSelected}
+      >
       </Nav>     
 
       <main>
-          <ContactForm></ContactForm>
-          <Gallery currentCategory={currentCategory}></Gallery>
-          <About />        
+        {!contactSelected ? (
+          <>
+            {/* Render 'gallery' and 'about' if 'contactSelected' is false. Note these two DOM elements are wrapped in 'React Fragments"!  */}
+            <Gallery currentCategory={currentCategory}></Gallery>
+            <About></About>
+          </>
+        ) : (
+            // Render the contact form if 'contactSelected' is true. 
+            <ContactForm></ContactForm>
+        )}
       </main>
     </div>
   );
