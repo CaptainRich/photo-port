@@ -128,11 +128,13 @@ const PhotoList = ({ category }) => {
           <img
             src={require(`../../assets/small/${category}/${i}.jpg`)}
             alt={image.name}
+            //alt={(`../../assets/small/${category}/${i}.jpg`)}
             className="img-thumbnail mx-1"
             onClick={() => toggleModal(image, i)}
             key={image.name}
           />
         ))}
+        {console.log( category)}
       </div>
     </div>
     
