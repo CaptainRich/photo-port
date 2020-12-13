@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react'
-//import Modal from '../Modal';
+import Modal from '../Modal';
 
 
 const PhotoList = ({ category }) => {
@@ -107,21 +107,35 @@ const PhotoList = ({ category }) => {
   // Build a new array of only the photos that match the current category.
   const currentPhotos = photos.filter((photo) => photo.category === category);
 
+  const [currentPhoto, setCurrentPhoto] = useState();
+
+  // Define the hook to conditionally render the modal.
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  ////////////////////////////////////////////////////////////
+  const toggleModal = (image, i) => {
+    setCurrentPhoto({...image, index: i});
+    setIsModalOpen( !isModalOpen );
+  }
 
   return (
       
     <div>
+      {isModalOpen && <Modal  currentPhoto={currentPhoto} onClose={toggleModal}></Modal>}
+
       <div className="flex-row">
         {currentPhotos.map((image, i) => (
           <img
             src={require(`../../assets/small/${category}/${i}.jpg`)}
             alt={image.name}
             className="img-thumbnail mx-1"
+            onClick={() => toggleModal(image, i)}
             key={image.name}
           />
         ))}
       </div>
     </div>
+    
   )
 }
 
