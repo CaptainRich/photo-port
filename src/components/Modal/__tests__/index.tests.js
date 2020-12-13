@@ -22,16 +22,21 @@ afterEach( cleanup );
 // Declare the component we're testing
 describe('Modal component', () => {
     it('renders', () => {
-        // baseline render component test
-    })
+        // First test - baseline to verify the component is rendering
+        render(<Modal currentPhoto={currentPhoto} />);  
+    });
+  });
 
+  describe('Modal Snapshot', () => {
+    // Second test - compare a snapshot of the 'About' component
     it('matches snapshot DOM node structure', () => {
-        // Arrange the snapshot - declare variables
-        // Assert the match
+      const { asFragment } = render(<Modal currentPhoto={currentPhoto} />);  // return a snapshot of the 'About' component
+      expect(asFragment()).toMatchSnapshot();    // do actual and expected snapshots math
     });
 });
 
 describe('Click Event', () => {
+    // Third test - test to close the modal
     it('calls onClose handler', () => {
         const { getByText } = render(<Modal
           onClose={mockToggleModal}
